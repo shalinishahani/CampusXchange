@@ -12,9 +12,9 @@ export const Route = createFileRoute("/_authenticated/notifications")({
   head: () => ({
     meta: [
       { title: "Notifications — CampusXchange" },
-      { name: "description", content: "Updates on your messages, wishlist activity and listings." },
+      { name: "description", content: "Updates on your wishlist activity and listings." },
       { property: "og:title", content: "Notifications — CampusXchange" },
-      { property: "og:description", content: "Never miss a buyer message or wishlist alert." },
+      { property: "og:description", content: "Never miss a wishlist alert or listing update." },
     ],
   }),
   component: NotificationsPage,

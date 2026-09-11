@@ -14,58 +14,7 @@ export type Database = {
   }
   public: {
     Tables: {
-      messages: {
-        Row: {
-          body: string
-          created_at: string
-          id: string
-          is_read: boolean
-          product_id: string | null
-          receiver_id: string
-          sender_id: string
-        }
-        Insert: {
-          body: string
-          created_at?: string
-          id?: string
-          is_read?: boolean
-          product_id?: string | null
-          receiver_id: string
-          sender_id: string
-        }
-        Update: {
-          body?: string
-          created_at?: string
-          id?: string
-          is_read?: boolean
-          product_id?: string | null
-          receiver_id?: string
-          sender_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "messages_product_id_fkey"
-            columns: ["product_id"]
-            isOneToOne: false
-            referencedRelation: "products"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "messages_receiver_id_profiles_fkey"
-            columns: ["receiver_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "messages_sender_id_profiles_fkey"
-            columns: ["sender_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
+
       notifications: {
         Row: {
           created_at: string

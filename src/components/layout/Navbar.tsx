@@ -6,7 +6,6 @@ import {
   LayoutDashboard,
   LogOut,
   Menu,
-  MessageSquare,
   Package,
   PlusCircle,
   Search,
@@ -105,11 +104,7 @@ export function Navbar() {
                   <Heart className="size-5" />
                 </Link>
               </Button>
-              <Button variant="ghost" size="icon" asChild aria-label="Messages">
-                <Link to="/messages">
-                  <MessageSquare className="size-5" />
-                </Link>
-              </Button>
+
               <Button variant="ghost" size="icon" asChild aria-label="Notifications">
                 <Link to="/notifications">
                   <Bell className="size-5" />

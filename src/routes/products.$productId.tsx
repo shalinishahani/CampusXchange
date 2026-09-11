@@ -6,7 +6,7 @@ import {
   Check,
   Heart,
   ImageIcon,
-  MessageSquare,
+  Mail,
   Phone,
   Share2,
   ShieldCheck,
@@ -56,7 +56,7 @@ function ProductDetail() {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("products")
-        .select("*, profiles:seller_id(id, full_name, college, department, year, phone, bio, profile_image)")
+        .select("*, profiles:seller_id(id, full_name, college, department, year, phone, email, bio, profile_image)")
         .eq("id", productId)
         .maybeSingle();
       if (error) throw error;
@@ -73,15 +73,6 @@ function ProductDetail() {
   useEffect(() => {
     void resolveImage(seller?.profile_image).then(setAvatar);
   }, [seller?.profile_image]);
-
-  const startChat = async () => {
-    if (!user) {
-      toast.error("Sign in to message the seller");
-      navigate({ to: "/auth", search: { mode: "login" } });
-      return;
-    }
-    navigate({ to: "/messages", search: { with: seller?.id, product: productId } });
-  };
 
   const share = async () => {
     const url = window.location.href;
@@ -190,9 +181,22 @@ function ProductDetail() {
               <Button asChild className="rounded-full">
                 <Link to="/my-listings">Manage listing</Link>
               </Button>
+            ) : user ? (
+              <Button asChild className="rounded-full" disabled={p.status === "sold"}>
+                <a href={`mailto:${seller?.email}`}>
+                  <Mail className="size-4" /> Email seller
+                </a>
+              </Button>
             ) : (
-              <Button className="rounded-full" onClick={startChat} disabled={p.status === "sold"}>
-                <MessageSquare className="size-4" /> Message seller
+              <Button 
+                className="rounded-full" 
+                onClick={() => {
+                  toast.error("Sign in to contact the seller");
+                  navigate({ to: "/auth", search: { mode: "login" } });
+                }}
+                disabled={p.status === "sold"}
+              >
+                <Mail className="size-4" /> Contact seller
               </Button>
             )}
             <Button
@@ -233,7 +237,7 @@ function ProductDetail() {
               Meet in a public campus spot and inspect the item before paying.
             </div>
             <ul className="space-y-1.5 text-xs text-muted-foreground">
-              {["Verified student account", "No platform fees", "Direct in-app chat"].map((t) => (
+              {["Verified student account", "No platform fees", "Direct contact"].map((t) => (
                 <li key={t} className="flex items-center gap-2">
                   <Check className="size-3.5 text-primary" /> {t}
                 </li>
