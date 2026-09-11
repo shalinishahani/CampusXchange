@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { Heart, MessageSquare, Package, PlusCircle, Wallet } from "lucide-react";
+import { Heart, Package, PlusCircle, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { supabase } from "@/integrations/supabase/client";
@@ -26,14 +26,9 @@ function Dashboard() {
     queryKey: ["dashboard", user?.id],
     enabled: Boolean(user),
     queryFn: async () => {
-      const [listings, wishlist, unread] = await Promise.all([
+      const [listings, wishlist] = await Promise.all([
         supabase.from("products").select("id, price, status").eq("seller_id", user!.id),
         supabase.from("wishlists").select("id", { count: "exact", head: true }).eq("user_id", user!.id),
-        supabase
-          .from("messages")
-          .select("id", { count: "exact", head: true })
-          .eq("receiver_id", user!.id)
-          .eq("is_read", false),
       ]);
       const rows = listings.data ?? [];
       return {
@@ -41,7 +36,6 @@ function Dashboard() {
         sold: rows.filter((r) => r.status === "sold").length,
         earned: rows.filter((r) => r.status === "sold").reduce((a, r) => a + Number(r.price), 0),
         saved: wishlist.count ?? 0,
-        unread: unread.count ?? 0,
       };
     },
   });
@@ -50,7 +44,6 @@ function Dashboard() {
     { label: "Active listings", value: data?.active ?? 0, icon: Package },
     { label: "Items sold", value: data?.sold ?? 0, icon: Wallet },
     { label: "Saved items", value: data?.saved ?? 0, icon: Heart },
-    { label: "Unread messages", value: data?.unread ?? 0, icon: MessageSquare },
   ];
 
   return (

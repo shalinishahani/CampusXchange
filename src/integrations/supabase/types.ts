@@ -14,6 +14,30 @@ export type Database = {
   }
   public: {
     Tables: {
+      college_domains: {
+        Row: {
+          id: string
+          college_name: string
+          domain: string
+          is_active: boolean
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          college_name: string
+          domain: string
+          is_active?: boolean
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          college_name?: string
+          domain?: string
+          is_active?: boolean
+          created_at?: string
+        }
+        Relationships: []
+      }
 
       notifications: {
         Row: {

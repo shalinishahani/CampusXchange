@@ -61,7 +61,36 @@ function AuthPage() {
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
+    const email = String(form.get("email"));
+
+    // --- College email domain validation ---
+    const domain = email.split("@")[1]?.toLowerCase();
+    if (!domain) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
     setLoading(true);
+    const { data: domainData, error: domainError } = await supabase
+      .from("college_domains")
+      .select("id")
+      .eq("domain", domain)
+      .eq("is_active", true)
+      .maybeSingle();
+
+    if (domainError) {
+      setLoading(false);
+      toast.error("Unable to verify your college email. Please try again.");
+      return;
+    }
+    if (!domainData) {
+      setLoading(false);
+      toast.error(
+        "Please use a valid college email address to register on CampusXchange."
+      );
+      return;
+    }
+    // --- End domain validation ---
+
     const { data, error } = await supabase.auth.signUp({
       email: String(form.get("email")),
       password: String(form.get("password")),
