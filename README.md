@@ -1,4 +1,4 @@
-## CampusXchange
+# CampusXchange
 
 ### Student Marketplace for Indian College Campuses
 
@@ -37,7 +37,7 @@ Examples include:
 * **Frontend:** React, TypeScript
 * **Framework:** TanStack Start
 * **Styling:** Tailwind CSS
-* **Backend & Database:** Supabase, PostgreSQL
+* **Backend & Database:** Supabase (PostgreSQL)
 * **Authentication:** Supabase Auth
 * **Tools:** Git, GitHub, VS Code
 
@@ -75,18 +75,6 @@ npm run dev
 
 The application will be available at the local development URL shown in your terminal.
 
-## 📸 Screenshots
-
-Add screenshots of the main CampusXchange pages here.
-
-Recommended screenshots:
-
-* Home / marketplace
-* Product listing
-* Product details
-* Dashboard
-* Profile
-
 ## 🎯 Project Goal
 
 CampusXchange aims to make buying and selling second-hand items easier for college students by creating a marketplace focused specifically on campus communities.
@@ -105,35 +93,5 @@ Instead of relying on general marketplaces, students can discover useful items f
 ## 👩‍💻 Project
 
 **CampusXchange**
+
 A student marketplace built for Indian college campuses.
-
-
-## 💻 Development
-
-### Prerequisites
-
-* Node.js
-* npm
-
-### Run Locally
-
-Clone the repository:
-
-```bash
-git clone https://github.com/shalinishahani/college-trunk-trade.git
-cd college-trunk-trade
-```
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Create a `.env` file using `.env.example` and configure the required Supabase environment variables.
-
-Start the development server:
-
-```bash
-npm run dev
-```
