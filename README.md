@@ -55,8 +55,8 @@ Make sure you have:
 Clone the repository:
 
 ```bash
-git clone https://github.com/shalinishahani/college-trunk-trade.git
-cd college-trunk-trade
+git clone https://github.com/shalinishahani/CampusXchange.git
+cd CampusXchange
 ```
 
 Install dependencies:
