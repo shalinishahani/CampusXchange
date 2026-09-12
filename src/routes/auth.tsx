@@ -61,10 +61,11 @@ function AuthPage() {
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
-    const email = String(form.get("email"));
+    const email = String(form.get("email")).trim();
 
     // --- College email domain validation ---
-    const domain = email.split("@")[1]?.toLowerCase();
+    const domain = email.split("@")[1]?.toLowerCase()?.trim();
+    console.log("[CampusXchange] Extracted domain for registration:", domain);
     if (!domain) {
       toast.error("Please enter a valid email address.");
       return;
@@ -79,6 +80,7 @@ function AuthPage() {
 
     if (domainError) {
       setLoading(false);
+      console.error("[CampusXchange] college_domains query error:", domainError);
       toast.error("Unable to verify your college email. Please try again.");
       return;
     }
@@ -116,26 +118,6 @@ function AuthPage() {
 
   const handleGoogle = async () => {
     try {
-      const result = await lovable.auth.signInWithOAuth("google", {
-        redirect_uri: window.location.origin,
-      });
-      if (result.error) {
-        console.warn("Lovable OAuth error, attempting direct Supabase OAuth:", result.error);
-        const { error } = await supabase.auth.signInWithOAuth({
-          provider: "google",
-          options: {
-            redirectTo: window.location.origin,
-          },
-        });
-        if (error) {
-          toast.error(error.message || "Google sign-in failed. Please check Google OAuth settings.");
-        }
-        return;
-      }
-      if (result.redirected) return;
-      navigate({ to: "/dashboard" });
-    } catch (err) {
-      console.error("Google sign-in exception:", err);
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
@@ -145,6 +127,9 @@ function AuthPage() {
       if (error) {
         toast.error(error.message || "Google sign-in failed. Please try again.");
       }
+    } catch (err) {
+      console.error("Google sign-in exception:", err);
+      toast.error("Google sign-in failed. Please try again.");
     }
   };
 

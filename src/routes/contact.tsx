@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Mail, MapPin, MessageSquare } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -37,7 +37,7 @@ function Contact() {
             onSubmit={(e) => {
               e.preventDefault();
               e.currentTarget.reset();
-              toast.success("Thanks! We'll get back to you soon.");
+              toast.success("This is a demo form. No message was actually sent.");
             }}
           >
             <div className="grid gap-5 sm:grid-cols-2">
@@ -62,8 +62,6 @@ function Contact() {
 
         <div className="space-y-4">
           {[
-            { icon: Mail, title: "Email", body: "hello@campusmarket.app" },
-            { icon: MessageSquare, title: "In-app chat", body: "Message any seller directly" },
             { icon: MapPin, title: "Where", body: "Your campus, every campus" },
           ].map(({ icon: Icon, title, body }) => (
             <Card key={title} className="gap-1 p-5">
