@@ -1,30 +1,139 @@
-# CampusXchange
+## CampusXchange
 
-CampusXchange – Student Buy, Sell & Exchange Platform
+### Student Marketplace for Indian College Campuses
 
-Overview
+CampusXchange is a web-based student marketplace designed for college campuses in India. It allows students to buy and sell useful second-hand items within their campus community.
 
-Build a complete, modern, production-ready web application called CampusXchange.
+Students can list items with photos, prices, and condition details, while other students can browse, search, filter, and contact sellers directly.
 
-The application is designed exclusively for college students to buy, sell, and exchange academic and personal items within their campus.
+## ✨ Features
 
-The goal is to create a secure, easy-to-use platform where students can list items such as books, calculators, lab equipment, electronics, bicycles, hostel furniture, and other useful items.
+* 🔐 Student registration and login
+* 📦 Create and manage product listings
+* 🔎 Search and filter listings
+* 🏷️ Product categories and condition details
+* ❤️ Wishlist
+* 👤 Student profile management
+* 📊 Personal dashboard
+* 📋 Manage your own listings
+* 📧 Contact sellers through email
+* 📱 Responsive design for desktop and mobile
 
-The application should have a clean architecture, modern UI, responsive design, and be scalable for future features.
+## 🛒 What Students Can Sell
 
-Target Users
+Examples include:
 
-Students (Buyer & Seller)
+* Textbooks and study materials
+* Calculators
+* Lab equipment
+* Electronics
+* Bicycles
+* Hostel supplies
+* Furniture
+* Other useful campus items
 
-This project is **CampusXchange**.
+## 🛠️ Tech Stack
 
-## Development
+* **Frontend:** React, TypeScript
+* **Framework:** TanStack Start
+* **Styling:** Tailwind CSS
+* **Backend & Database:** Supabase, PostgreSQL
+* **Authentication:** Supabase Auth
+* **Tools:** Git, GitHub, VS Code
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+## 🚀 Getting Started
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+### Prerequisites
+
+Make sure you have:
+
+* Node.js
+* npm
+
+### Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/shalinishahani/college-trunk-trade.git
+cd college-trunk-trade
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Create a `.env` file using `.env.example` and add your Supabase configuration.
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+The application will be available at the local development URL shown in your terminal.
+
+## 📸 Screenshots
+
+Add screenshots of the main CampusXchange pages here.
+
+Recommended screenshots:
+
+* Home / marketplace
+* Product listing
+* Product details
+* Dashboard
+* Profile
+
+## 🎯 Project Goal
+
+CampusXchange aims to make buying and selling second-hand items easier for college students by creating a marketplace focused specifically on campus communities.
+
+Instead of relying on general marketplaces, students can discover useful items from other students in their college environment and communicate directly with sellers.
+
+## 🔮 Future Improvements
+
+* Campus-specific marketplace discovery
+* Listing moderation
+* Item availability tracking
+* Improved search and recommendations
+* Report and moderation system
+* Location/campus-based filtering
+
+## 👩‍💻 Project
+
+**CampusXchange**
+A student marketplace built for Indian college campuses.
+
+
+## 💻 Development
+
+### Prerequisites
+
+* Node.js
+* npm
+
+### Run Locally
+
+Clone the repository:
+
+```bash
+git clone https://github.com/shalinishahani/college-trunk-trade.git
+cd college-trunk-trade
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Create a `.env` file using `.env.example` and configure the required Supabase environment variables.
+
+Start the development server:
+
+```bash
 npm run dev
 ```
