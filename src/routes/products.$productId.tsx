@@ -65,6 +65,8 @@ function ProductDetail() {
   });
 
   const seller = (product as any)?.profiles ?? null;
+  const sellerEmail = seller?.email ? String(seller.email).trim() : null;
+  const sellerName = seller?.full_name ? String(seller.full_name).trim() : "there";
 
   useEffect(() => {
     void resolveImages((product as any)?.images ?? []).then(setGallery);
@@ -181,22 +183,24 @@ function ProductDetail() {
               <Button asChild className="rounded-full">
                 <Link to="/my-listings">Manage listing</Link>
               </Button>
-            ) : user ? (
+            ) : sellerEmail ? (
               <Button asChild className="rounded-full" disabled={p.status === "sold"}>
-                <a href={`mailto:${seller?.email}`}>
+                <a
+                  href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(sellerEmail)}&su=${encodeURIComponent(`Inquiry about: ${p.title}`)}&body=${encodeURIComponent(`Hi ${sellerName},\n\nI'm interested in your listing "${p.title}" on CampusXchange.\n\n`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Mail className="size-4" /> Email seller
                 </a>
               </Button>
             ) : (
-              <Button 
-                className="rounded-full" 
-                onClick={() => {
-                  toast.error("Sign in to contact the seller");
-                  navigate({ to: "/auth", search: { mode: "login" } });
-                }}
+              <Button
+                variant="secondary"
+                className="rounded-full"
+                onClick={() => toast.error("Seller email is not available for this listing")}
                 disabled={p.status === "sold"}
               >
-                <Mail className="size-4" /> Contact seller
+                <Mail className="size-4" /> Email seller
               </Button>
             )}
             <Button
@@ -232,6 +236,15 @@ function ProductDetail() {
                 <Phone className="size-4 text-primary" /> {seller.phone}
               </p>
             ) : null}
+            {sellerEmail ? (
+              <p className="flex items-center gap-2 text-sm">
+                <Mail className="size-4 text-primary" /> {sellerEmail}
+              </p>
+            ) : (
+              <p className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Mail className="size-4 text-muted-foreground" /> No seller email provided
+              </p>
+            )}
             <div className="flex items-center gap-2 rounded-xl bg-accent p-3 text-xs text-accent-foreground">
               <ShieldCheck className="size-4 shrink-0" />
               Meet in a public campus spot and inspect the item before paying.
