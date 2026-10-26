@@ -186,9 +186,7 @@ function ProductDetail() {
             ) : sellerEmail ? (
               <Button asChild className="rounded-full" disabled={p.status === "sold"}>
                 <a
-                  href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(sellerEmail)}&su=${encodeURIComponent(`Inquiry about: ${p.title}`)}&body=${encodeURIComponent(`Hi ${sellerName},\n\nI'm interested in your listing "${p.title}" on CampusXchange.\n\n`)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={`mailto:${sellerEmail}?subject=${encodeURIComponent(`Inquiry about: ${p.title}`)}&body=${encodeURIComponent(`Hi ${sellerName},\n\nI'm interested in your listing "${p.title}" on CampusXchange.\n\n`)}`}
                 >
                   <Mail className="size-4" /> Email seller
                 </a>
